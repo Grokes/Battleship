@@ -1,31 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BattleShip.Core
 {
-    enum Cell {Empty = 0, Ship = 1 }
-    internal class GameField
+    public class GameField
     {
-        uint Size_x { get; set; }
-        uint Size_y { get; set; }
-        int[,] _field;
-        List<IShip> Ships { get; set; }
+        const int SIZE = 10;
+        Cell[,] _field;
 
-        void CreateField()
-        { 
-            
+        public GameField(string strField)
+        {
+            _field = new Cell[SIZE, SIZE];
+            for (int i = 0; i < _field.GetLength(0); ++i)
+            {
+                for (int j = 0; j < _field.GetLength(1); ++j)
+                {
+                    if (strField[i * 10 + j] == '*')
+                    {
+                        _field[i, j] = new Cell(CellValue.Ship);
+                    }
+                    else
+                    {
+                        _field[i, j] = new Cell(CellValue.Empty);
+                    }
+                }
+            }
+        }
+        public bool Shoot(int x, int y)
+        {
+            _field[y, x].Is_Hit = true;
+            return _field[y, x].Is_Ship;
         }
 
-        void SetShip(IShip ship)
+        public bool IsWin()
         {
-            
+            foreach (var cell in _field)
+            {
+                return !(cell.Is_Ship && !cell.Is_Hit);
+            }
+            return true;
         }
-        bool Is_fieldEmpty(int x, int y)
+
+        public string PrintField()
         {
-            return _field[x, y] == 0;
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < _field.GetLength(0); ++i)
+            {
+                for (int j = 0; j < _field.GetLength(1); ++j)
+                {
+                    if (_field[i, j].Is_Ship && !_field[i, j].Is_Hit)
+                        result.Append('*');
+                    else if (_field[i, j].Is_Ship && _field[i, j].Is_Hit)
+                        result.Append('x');
+                    else if (!_field[i, j].Is_Ship && _field[i, j].Is_Hit)
+                        result.Append('o');
+                    else if (!_field[i, j].Is_Ship && !_field[i, j].Is_Hit)
+                        result.Append('k');
+                }
+                result.Append('\n');
+            }
+            return result.ToString();
         }
     }
 }
