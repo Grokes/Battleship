@@ -54,12 +54,12 @@ namespace BattleShip.Core
                 {
                     if (_field[i, j].Is_Ship && !_field[i, j].Is_Hit)
                         result.Append('*');
-                    else if (_field[i, j].Is_Ship && _field[i, j].Is_Hit)
-                        result.Append('x');
-                    else if (!_field[i, j].Is_Ship && _field[i, j].Is_Hit)
-                        result.Append('o');
                     else if (!_field[i, j].Is_Ship && !_field[i, j].Is_Hit)
                         result.Append('k');
+                    else if (!_field[i, j].Is_Ship && _field[i, j].Is_Hit)
+                        result.Append('o');
+                    else if (_field[i, j].Is_Ship && _field[i, j].Is_Hit)
+                        result.Append('x');
                 }
                 result.Append('\n');
             }

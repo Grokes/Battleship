@@ -8,7 +8,7 @@ string message = "00000****000000000000000000000000****0000000000000000000000000
 TcpClient player = new TcpClient();
 Console.WriteLine("Клиент создан");
 
-player.Connect(IPEndPoint.Parse("94.19.144.216:30297"));
+player.Connect(IPEndPoint.Parse("127.0.0.1:30297"));
 Console.WriteLine("Подключение успешно");
 NetworkStream stream = player.GetStream();
 
@@ -25,14 +25,11 @@ for (int i = 0; i < 10; ++i)
 {
     Console.WriteLine(reader.ReadLine());
 }
+Console.WriteLine();
 for (int i = 0; i < 10; ++i)
 {
     Console.WriteLine(reader.ReadLine());
 }
-
-
-
-
 
 
 
@@ -44,5 +41,16 @@ writer.WriteLine(x);
 writer.Flush();
 writer.WriteLine(y);
 writer.Flush();
+Console.Clear();
+
+for (int i = 0; i < 10; ++i)
+{
+    Console.WriteLine(reader.ReadLine());
+}
+Console.WriteLine();
+for (int i = 0; i < 10; ++i)
+{
+    Console.WriteLine(reader.ReadLine());
+}
 
 Console.ReadLine();
