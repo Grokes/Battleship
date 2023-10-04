@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BattleShip.ConsoleGraphic\BattleShip.ConsoleGraphic.csproj" />
+    <ProjectReference Include="..\BattleShip.Core.Server\BattleShip.Core.Server.csproj" />
+  </ItemGroup>
+
 </Project>

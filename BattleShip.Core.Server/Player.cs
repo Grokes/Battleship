@@ -24,7 +24,7 @@ namespace BattleShip.Core.Server
             Writer = new StreamWriter(stream);
         }
 
-        public void RequestField() //Генерация поля 
+        public void RequestField() //Генерация/Запрос поля 
         {
             string? fieldData = Reader.ReadLine();
             field = new GameField(fieldData);
@@ -44,11 +44,11 @@ namespace BattleShip.Core.Server
             foreach (var cell in field.Field)
             {
                 if (cell.Is_Ship && !cell.Is_Hit)
-                    result.Append('*');
+                    result.Append('■');
                 else if (!cell.Is_Ship && !cell.Is_Hit)
-                    result.Append('k');
+                    result.Append(' ');
                 else if (!cell.Is_Ship && cell.Is_Hit)
-                    result.Append('o');
+                    result.Append('O');
                 else if (cell.Is_Ship && cell.Is_Hit)
                     result.Append('x');
             }
@@ -61,10 +61,10 @@ namespace BattleShip.Core.Server
             foreach (var cell in field.Field)
             {
                 if (!cell.Is_Hit)
-                    result.Append('k');
-                else if (!cell.Is_Ship && cell.Is_Hit)
-                    result.Append('o');
-                else if (cell.Is_Ship && cell.Is_Hit)
+                    result.Append(' ');
+                else if (!cell.Is_Ship)
+                    result.Append('O');
+                else if (cell.Is_Ship)
                     result.Append('x');
             }
             result.Append('\n');
