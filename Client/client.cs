@@ -21,36 +21,45 @@ Console.WriteLine("Данные ушли");
 
 //StringBuilder fields = new StringBuilder();
 
-for (int i = 0; i < 10; ++i)
-{
-    Console.WriteLine(reader.ReadLine());
-}
-Console.WriteLine();
-for (int i = 0; i < 10; ++i)
-{
-    Console.WriteLine(reader.ReadLine());
-}
+var my_field = reader.ReadLine();
+var enemy_field = reader.ReadLine();
 
-
-
-Console.WriteLine("Координаты x: ");
-string x = Console.ReadLine();
-Console.WriteLine("Координаты y: ");
-string y = Console.ReadLine();
-writer.WriteLine(x);
-writer.Flush();
-writer.WriteLine(y);
-writer.Flush();
-Console.Clear();
+//StringBuilder final_view = new StringBuilder();
 
 for (int i = 0; i < 10; ++i)
 {
-    Console.WriteLine(reader.ReadLine());
+    Console.WriteLine(my_field.Substring(i * 10, 10) + "\t\t" + enemy_field.Substring(i * 10, 10));
 }
-Console.WriteLine();
-for (int i = 0; i < 10; ++i)
+
+
+while (true)
 {
-    Console.WriteLine(reader.ReadLine());
+    Console.WriteLine("Координаты x: ");
+    string x = Console.ReadLine();
+    Console.WriteLine("Координаты y: ");
+    string y = Console.ReadLine();
+    writer.WriteLine(x);
+    writer.Flush();
+    writer.WriteLine(y);
+    writer.Flush();
+    Console.Clear();
+
+    my_field = reader.ReadLine();
+    enemy_field = reader.ReadLine();
+    for (int i = 0; i < 10; ++i)
+    {
+        Console.WriteLine(my_field.Substring(i * 10, 10) + "\t\t" + enemy_field.Substring(i * 10, 10));
+    }
+
+    my_field = reader.ReadLine();
+    enemy_field = reader.ReadLine();
+    Console.Clear();
+
+    for (int i = 0; i < 10; ++i)
+    {
+        Console.WriteLine(my_field.Substring(i * 10, 10) + "\t\t" + enemy_field.Substring(i * 10, 10));
+    }
 }
+
 
 Console.ReadLine();

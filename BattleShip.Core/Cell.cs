@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BattleShip.Core
 {
-    enum CellValue:short {Empty = 0, Ship = 1,  }
-    internal class Cell
+    public enum CellValue:short {Empty = 0, Ship = 1,  }
+    public class Cell
     {
         public bool Is_Hit { get; set; } = false;
         public bool Is_Ship { get; set; }
