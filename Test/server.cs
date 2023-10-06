@@ -15,7 +15,12 @@ while (true)
     room.SendDataClients();
     room.Player2.Shoot(room.Player1);
     room.SendDataClients();
+
+    if (room.Player1.field.IsWin() || room.Player2.field.IsWin())
+        break;
 }
+
+
 /*
 Разделение по библиотекам
 #1

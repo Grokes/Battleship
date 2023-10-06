@@ -11,10 +11,12 @@ namespace BattleShip.Core.Server
 {
     public class Player:IDisposable
     {
-        GameField field;
+        public GameField field;
         TcpClient player;
+        public bool Is_your_move { get; set; } = false;
         public StreamReader Reader { get; private set; }
         public StreamWriter Writer { get; private set; }
+        public BinaryWriter WriterBin { get; private set; }
 
         public Player(TcpClient player_arg)
         {
@@ -22,6 +24,7 @@ namespace BattleShip.Core.Server
             var stream = player.GetStream();
             Reader = new StreamReader(stream);
             Writer = new StreamWriter(stream);
+            WriterBin = new BinaryWriter(stream);
         }
 
         public void RequestField() //Генерация/Запрос поля 
@@ -36,6 +39,8 @@ namespace BattleShip.Core.Server
             int y = int.Parse(Reader.ReadLine());
 
             enemy.field.Shoot(x, y);
+            this.Is_your_move = !this.Is_your_move;
+            enemy.Is_your_move = !enemy.Is_your_move;
         }
 
         public string GetFieldData()
